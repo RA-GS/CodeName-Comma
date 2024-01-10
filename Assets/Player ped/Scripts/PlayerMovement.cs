@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Camera playerCamera;
-
+    // test comment from github
     public float walkSpeed = 6f;
     public float runSpeed = 12f;
     public float jumpPower = 7f;
