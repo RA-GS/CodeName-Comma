@@ -1,32 +1,64 @@
+using Players;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
 {
-    GameObject aswinPed;
-    GameObject gunaPed;
-    GameObject sriramPed;
-    GameObject rahulPed;
+    int curplayerid = 1;
+    public GameObject aswin;
+    public GameObject guna;
+    public GameObject sriram;
+    public GameObject rahul;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        aswinPed = GameObject.Find("aswinBody");
-        gunaPed = GameObject.Find("gunaBody");
-        sriramPed = GameObject.Find("sriramBody");
-        rahulPed = GameObject.Find("rahulBody");
+    
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("space"))
+        Rigidbody curplayer = null;
+        if (curplayerid == 1)
         {
-            Debug.Log("space is pressed");
-            aswinPed.GetComponent<Rigidbody>().velocity = new Vector3(0, 5, 0);
-            gunaPed.GetComponent<Rigidbody>().velocity = new Vector3(0, 5, 0);
-            sriramPed.GetComponent<Rigidbody>().velocity = new Vector3(0, 5, 0);
-            rahulPed.GetComponent<Rigidbody>().velocity = new Vector3(0, 5, 0);
+            curplayer = aswin.GetComponent<Rigidbody>(); ;
+        }
+        else if (curplayerid == 2)
+        {
+            curplayer = guna.GetComponent<Rigidbody>(); ;
+        }
+        else if (curplayerid == 3)
+        {
+            curplayer = sriram.GetComponent<Rigidbody>(); ;
+        }
+        else if (curplayerid == 4)
+        {
+            curplayer = rahul.GetComponent<Rigidbody>(); ;
+        }
+        Debug.Log(curplayer.name);
+
+        if (Input.GetButtonDown("forward"))
+        {
+            curplayer.velocity = new Vector3(curplayer.velocity.x, curplayer.velocity.y, 5);
+        }
+        else if (Input.GetButtonDown("backward"))
+        {
+            curplayer.velocity = new Vector3(curplayer.velocity.x, curplayer.velocity.y, -5);
+        }
+        else if (Input.GetButtonDown("left"))
+        {
+            curplayer.velocity = new Vector3(-5, curplayer.velocity.y, curplayer.velocity.z);
+        }
+        else if (Input.GetButtonDown("right"))
+        {
+            curplayer.velocity = new Vector3(5, curplayer.velocity.y, curplayer.velocity.z);
+        }
+        else if (Input.GetButtonDown("jump"))
+        {
+            curplayer.velocity = new Vector3(curplayer.velocity.x, 5, curplayer.velocity.y);
         }
     }
 }
