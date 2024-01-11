@@ -70,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         characterController.Move(moveDirection * Time.deltaTime);
+        GetComponent<Animation>().Play("walkanim");
 
         if (canMove)
         {
